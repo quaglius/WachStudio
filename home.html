@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wach Studio - Solicitud de Tatuaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            color: #fff;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        textarea, select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Solicita tu Tatuaje</h2>
+        <label for="idea">Describe tu idea:</label>
+        <textarea id="idea" rows="4" placeholder="Describe tu tatuaje..."></textarea>
+        
+        <label for="size">Tamaño (cm):</label>
+        <input type="number" id="size" placeholder="Ej: 10">
+        
+        <label for="bodyPart">Parte del cuerpo:</label>
+        <select id="bodyPart">
+            <option value="hombro">Hombro</option>
+            <option value="brazo">Brazo</option>
+            <option value="muslo">Muslo</option>
+            <option value="pierna">Pierna</option>
+            <option value="espalda alta">Espalda alta</option>
+            <option value="cintura">Cintura</option>
+            <option value="cuello">Cuello</option>
+            <option value="nalga">Nalga</option>
+            <option value="ingle">Ingle</option>
+            <option value="mano">Mano</option>
+            <option value="pie">Pie</option>
+        </select>
+        
+        <button onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
+    </div>
+
+    <script>
+        function enviarWhatsApp() {
+            let idea = document.getElementById("idea").value;
+            let size = document.getElementById("size").value;
+            let bodyPart = document.getElementById("bodyPart").value;
+            
+            let mensaje = `Hola! Me gustaría hacerme un tatuaje.\n\n` +
+                          `Idea: ${idea}\n` +
+                          `Tamaño: ${size} cm\n` +
+                          `Parte del cuerpo: ${bodyPart}`;
+            
+            let url = `https://api.whatsapp.com/send/?phone=5491130747175&text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>
